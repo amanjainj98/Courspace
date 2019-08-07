@@ -1,0 +1,52 @@
+{% extends 'instructor/instructor_basic_page.html' %}
+{% block course_active %}active{% endblock %}
+
+
+{% block body %}
+
+<div class="albums-container container-fluid"style="font-family: Ledger;font-size: 22px;">
+
+    <!-- Courses -->
+    <div class="row col-sm-9" >
+        <div class="col-sm-12"style="font-family: 'Alfa Slab One';font-size:24px;">
+            <h3 align="center" style="font-family:Volkhov,cursive;font-size:40px;color: #728892">YOUR COURSES</h3>
+        </div >
+        {% if courses %}
+            {% for course in courses %}
+                <div  class="col-sm-6 col-lg-4" >
+                    <div class="thumbnail" style="background-color: #e3f0e8;border: 0px solid #66cdaa;">
+                        <a href="{% url 'instructor:instructor_detail' course.id %}">
+                             <img src="{{ course.course_logo.url }}" class="img-responsive">
+                            <!--{{ course.name }}-->
+                        </a>
+
+                        <div class="caption">
+                            <h2>{{ course.code }}</h2>
+                            <div style="height: 40px">
+                                <h4>{{ course.name }}</h4>
+                            </div>
+                            <!-- View Details -->
+                            <a href="{% url 'instructor:instructor_detail' course.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                        </div>
+
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <h4>You are not enrolled in any courses</h4>
+            </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+
+<!--
+             <a href="{% url 'instructor:instructor_detail' course.id %}">
+                             <img src="{{ course.course_logo.url }}" class="img-responsive">
+-->

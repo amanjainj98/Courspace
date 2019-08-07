@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Log In{% endblock %}</title>
+    {% load staticfiles %}
+    <!--<link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Frijole' rel='stylesheet'>
+    <!--<script src="{% static 'music/js/main.js' %}"></script>-->
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body {
+  background: #76b852; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+  background: -moz-linear-gradient(right, #76b852, #8DC26F);
+  background: -o-linear-gradient(right, #76b852, #8DC26F);
+  background: linear-gradient(to left, #76b852, #8DC26F);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+
+<script>
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+</script>
+
+</head>
+{% block body %}
+
+
+
+<!--<div class="login-page">-->
+  <!--<div class="form">-->
+    <!--<form class="register-form">-->
+      <!--<input type="text" placeholder="name"/>-->
+      <!--<input type="password" placeholder="password"/>-->
+      <!--<input type="text" placeholder="email address"/>-->
+      <!--<button>create</button>-->
+      <!--<p class="message">Already registered? <a href="#">Sign In</a></p>-->
+    <!--</form>-->
+    <!--<form class="login-form" role="form" action="{% url 'login_user'%}" method="post" enctype="multipart/form-data">-->
+        <!--{% csrf_token %}-->
+      <!--<input id="id_username" maxlength="30" name="username" type="text" placeholder="username"/>-->
+      <!--<input id="id_password" maxlength="30" name="password" type="password" placeholder="password"/>-->
+      <!--<button>login</button>-->
+      <!--<p class="message">Not registered? <a href="{% url 'register_user' %}">Register Now!</a></p>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
+<br><br><br><br><br><br>
+<div class="col-sm-offset-3 col-sm-8 col-md-5" style="background-color:white">
+{% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2 style="text-align:center">Register Now</h2><br>
+        {% for field in user_form %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+            </div>
+        <label class="control-label col-sm-4">{{ field.label_tag }}</label>
+        <div class="col-sm-5">{{ field }}</div>
+        </div>
+        {% endfor %}
+
+        {% for field in student_form %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+            </div>
+        <label class="control-label col-sm-4">{{ field.label_tag }}</label>
+        <div class="col-sm-5">{{ field }}</div>
+        </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Registration</title>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body style="background-color: lightblue">-->
+
+<!--<div class="container-fluid">-->
+
+
+    <!--<div>-->
+        <!--<br><br><br><br><br><br><br><br><br><br>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+
+        <!--<div class="col-sm-4">-->
+
+        <!--</div>-->
+        <!--<div class="col-sm-3"style="background-color: white;">-->
+
+    <!--<h3>Choose a username and password</h3>-->
+    <!--{% if error_message %}-->
+        <!--<p><strong>{{ error_message }}</strong></p>-->
+    <!--{% endif %}-->
+        <!--<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">-->
+        <!--{% csrf_token %}-->
+
+
+        <!--{% for field in user_form %}-->
+        <!--<div class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+                <!--<span class="text-danger small">{{ field.errors }}</span>-->
+            <!--</div>-->
+        <!--<label class="control-label col-sm-2">{{ field.label_tag }}</label>-->
+        <!--<div class="col-sm-10">{{ field }}</div>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
+
+        <!--{% for field in student_form %}-->
+        <!--<div class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+                <!--<span class="text-danger small">{{ field.errors }}</span>-->
+            <!--</div>-->
+        <!--<label class="control-label col-sm-2">{{ field.label_tag }}</label>-->
+        <!--<div class="col-sm-10">{{ field }}</div>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
+
+        <!--<div class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+                <!--<button type="submit" class="btn btn-success">Submit</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</form>-->
+
+        <!--</div>-->
+        <!--<div class="col-sm-5">-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

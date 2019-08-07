@@ -1,0 +1,89 @@
+{% extends 'course/basic_page.html' %}
+{% block title %}{{ album }}{% endblock %}
+{% block albums_active %}active{% endblock %}
+{% block body %}
+<br>
+<div class="container-fluid songs-container">
+
+    <div class="row">
+        <!-- Left Album Info -->
+        <div class="col-sm-6 col-md-3">
+            <div class="panel panel-default">
+                {% if course in courses %}
+                <div class="panel-body" style="background-color: #e3f0e8;border: 0px solid #66cdaa;">
+                    <a href="{% url 'course:detail' course.id %}">
+                        {% if course.course_logo %}
+                            <img src="{{ course.course_logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1 align="center">{{ course.code }}<br> <small>{{ course.name }}</small></h1>
+                    <h2 align="center">{{ course.instructor }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9"style="color:white;">
+
+            <div class="col-sm-2">
+    <a href="{% url 'course:view_assignments' course.id %}">
+        <button type="submit" class="btn btn-success"style="font-size: larger;padding-left: 20px;margin-left:150px">Assignments</button></a>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-2">
+    <a href="{% url 'course:view_resources' course.id %}">
+        <button type="submit" class="btn btn-success"style="font-size: larger;margin-left:0px">Resources</button></a>
+            </div>
+
+            <div class="col-sm-4"></div>
+            <br><br><br>
+
+
+
+            <div class="col-sm-10" style=" position:fixed-right;overflow-y: scroll; height:650px;border: 3px solid #66cdaa;background-color:#e3f0e8;color:black;font-family: 'Abhaya Libre';font-size:16px;">
+
+                <h1 style="text-align:center;font-family:Volkhov,cursive;font-size:40px;color: #728892"> Forum </h1>
+
+
+<!--
+                <div class="col-sm-12" style="font-family: 'Alfa Slab One';font-size:24px;">
+            <h3 align="center">Messages</h3>
+                </div>
+                -->
+                <br>
+                 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-danger small">{{ field.errors }}</span>
+                        </div>
+
+                    <div class="col-sm-10" style="color: black;">{{ field }}
+                    <button type="submit" style="margin-left:20px" class="btn btn-success">Send</button>
+                    </div>
+                    </div>
+                    {% endfor %}
+
+
+                </form>
+    {% for message in messages reversed %}
+        <br>
+                <div style="background-color:#CDD8CD; border-radius:2%;padding:10px; margin:5px">
+                    <b>{{ message.sender }}</b><br>
+                    <div style="font-size:12px;">{{ message.time }}</div>
+                    {{ message.content }}<br>
+                </div>
+    {% endfor %}
+        </div><br><br><br>
+        </div><br><br><br>
+    </div><br><br><br>
+</div>
+{% else %}
+    You are not enrolled in this course
+{% endif %}
+{% endblock %}

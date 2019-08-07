@@ -1,0 +1,13 @@
+/*! \mainpage Introduction
+ *
+ * This project is a Django based website for a university/school 
+ * where students and instructors can interact.
+ * - \subpage requirements "Requirements"
+ */ 
+
+/*! \page requirements Requirements
+ * Requirements to run the project:
+ *	- Django (preferably version 1.11.6)
+ *	- Python3
+ *	- matplotlib python package
+ */

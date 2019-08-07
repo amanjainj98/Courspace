@@ -1,0 +1,11 @@
+Requirements-
+
+Python3-
+sudo apt-get install python3.6
+
+Django - (preferably version 1.11.6)-
+sudo pip3 install Django==1.11.6
+
+matplotlib python package-
+sudo pip3 install matplotlib
+
